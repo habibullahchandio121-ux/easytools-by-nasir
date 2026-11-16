@@ -1,0 +1,6 @@
+{
+  "name": "ToolBazaar",
+  "description": "All-in-one browser-based utility suite for images, PDFs, video, audio, text, and developer tools. Fast, private, and 100% client-side.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
