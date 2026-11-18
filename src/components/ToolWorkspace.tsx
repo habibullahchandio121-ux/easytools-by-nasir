@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { TOOLS } from '../data/tools';
 import { TOOL_GUIDES } from '../data/toolGuides';
+import { TOOL_SEO } from '../data/seoMeta';
 import type { ToolId, ToolItem } from '../types/tool';
 import { BgRemoverTool } from './tools/BgRemoverTool';
 import { ImageCompressorTool } from './tools/ImageCompressorTool';
@@ -35,6 +36,7 @@ export const ToolWorkspace: React.FC<ToolWorkspaceProps> = ({
 }) => {
   const Icon = tool.icon;
   const guide = TOOL_GUIDES[tool.id];
+  const toolSeo = TOOL_SEO[tool.id];
 
   const renderTool = () => {
     switch (tool.id) {
@@ -121,7 +123,7 @@ export const ToolWorkspace: React.FC<ToolWorkspaceProps> = ({
             </div>
             <div>
               <h1 className="font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">
-                {tool.name}
+                {toolSeo?.h1 || tool.name}
               </h1>
               <p className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">
                 {tool.description}

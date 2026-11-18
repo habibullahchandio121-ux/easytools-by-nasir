@@ -1,11 +1,20 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { TOOLS, TOOL_CATEGORIES } from './data/tools';
+import { PAGE_SEO, SITE_NAME, TOOL_SEO } from './data/seoMeta';
+import { applySeoMeta } from './utils/seo';
 import type { ToolCategory, ToolId } from './types/tool';
 import { Header } from './components/Header';
 import { AboutContactSection } from './components/AboutContactSection';
 import { Footer } from './components/Footer';
 import { ToolWorkspace } from './components/ToolWorkspace';
+
+function getToolIdFromUrl(): ToolId | null {
+  if (typeof window === 'undefined') return null;
+  const param = new URLSearchParams(window.location.search).get('tool');
+  if (!param) return null;
+  return TOOLS.some((t) => t.id === param) ? (param as ToolId) : null;
+}
 
 export default function App() {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -14,7 +23,7 @@ export default function App() {
   });
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeCategory, setActiveCategory] = useState<ToolCategory>('All');
-  const [activeToolId, setActiveToolId] = useState<ToolId | null>(null);
+  const [activeToolId, setActiveToolId] = useState<ToolId | null>(() => getToolIdFromUrl());
 
   useEffect(() => {
     const root = document.documentElement;
@@ -26,6 +35,14 @@ export default function App() {
       localStorage.setItem('toolbazaar-theme', 'light');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setActiveToolId(getToolIdFromUrl());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const filteredTools = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -45,13 +62,42 @@ export default function App() {
     [activeToolId]
   );
 
+  useEffect(() => {
+    if (activeTool) {
+      const seo = TOOL_SEO[activeTool.id];
+      applySeoMeta({
+        title: seo.title,
+        description: seo.description,
+        appName: `${activeTool.name} — ${SITE_NAME}`,
+      });
+    } else {
+      applySeoMeta({
+        title: PAGE_SEO.home.title,
+        description: PAGE_SEO.home.description,
+        appName: SITE_NAME,
+      });
+    }
+  }, [activeTool]);
+
   const handleOpenTool = (id: ToolId) => {
     setActiveToolId(id);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tool', id);
+      window.history.pushState({ toolId: id }, '', url.toString());
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleGoHome = () => {
     setActiveToolId(null);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has('tool')) {
+        url.searchParams.delete('tool');
+        window.history.pushState({ toolId: null }, '', url.pathname + url.search);
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

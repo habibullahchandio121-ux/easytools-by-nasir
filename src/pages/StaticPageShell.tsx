@@ -9,6 +9,8 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import type { PageKey } from '../types/tool';
+import { PAGE_SEO, SITE_NAME } from '../data/seoMeta';
+import { applySeoMeta } from '../utils/seo';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
@@ -369,6 +371,15 @@ export const StaticPageShell: React.FC<StaticPageShellProps> = ({ page }) => {
       localStorage.setItem('toolbazaar-theme', 'light');
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    const seo = PAGE_SEO[page];
+    applySeoMeta({
+      title: seo.title,
+      description: seo.description,
+      appName: `${seo.title} — ${SITE_NAME}`,
+    });
+  }, [page]);
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
