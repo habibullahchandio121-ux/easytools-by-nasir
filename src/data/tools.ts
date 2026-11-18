@@ -13,7 +13,6 @@ import {
   ArrowLeftRight,
   Volume2,
   Music,
-  Stamp,
   Files,
   Video,
   ScanText,
@@ -139,14 +138,6 @@ export const TOOLS: ToolItem[] = [
     category: 'Video & Audio',
     icon: Music,
     accepts: 'video/*',
-  },
-  {
-    id: 'watermark-remover',
-    name: 'Watermark Remover',
-    description: 'Brush over logos or marks to blend and clean them using pixel inpainting.',
-    category: 'Image',
-    icon: Stamp,
-    accepts: 'image/*',
   },
   {
     id: 'pdf-merge',

@@ -15,7 +15,10 @@ const FOOTER_LINKS: { key: Exclude<PageKey, 'home'>; label: string; href: string
 
 export const Footer: React.FC<FooterProps> = ({ onGoHome, activePage }) => {
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (onGoHome && window.location.pathname === '/') {
+    if (
+      onGoHome &&
+      (window.location.pathname === '/' || window.location.pathname === '/index.html')
+    ) {
       e.preventDefault();
       onGoHome();
     }
@@ -36,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ onGoHome, activePage }) => {
             </span>
           </a>
           <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-            19 browser-only utilities · Zero uploads to servers · © {new Date().getFullYear()} EasyTools By Nasir
+            18 browser-only utilities · Zero uploads to servers · © {new Date().getFullYear()} EasyTools By Nasir
           </p>
         </div>
 

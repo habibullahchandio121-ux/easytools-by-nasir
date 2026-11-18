@@ -132,7 +132,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* 20 Tools Grid */}
+            {/* 18 Tools Grid */}
             <section aria-label="Available tools" className="mt-7">
               <div className="mb-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                 <h2 className="font-display text-base font-bold text-slate-900 dark:text-white">

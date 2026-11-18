@@ -17,7 +17,7 @@ export const AboutContactSection: React.FC = () => {
             Built for Fast, Private Everyday Work
           </h2>
           <p className="mt-2.5 text-sm leading-relaxed text-slate-300">
-            EasyTools By Nasir was created by Nasir in Karachi, Pakistan to bring 19 essential image, PDF, audio, video, and text utilities into a single browser-only workspace. Everything runs locally on your device without uploading your files to external servers.
+            EasyTools By Nasir was created by Nasir in Karachi, Pakistan to bring 18 essential image, PDF, audio, video, and text utilities into a single browser-only workspace. Everything runs locally on your device without uploading your files to external servers.
           </p>
           <p className="mt-2 text-xs text-slate-400">
             Have a question, suggestion, or found a bug? Reach out anytime by email or visit our{' '}

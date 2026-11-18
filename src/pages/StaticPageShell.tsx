@@ -39,7 +39,7 @@ const AboutPageContent: React.FC = () => {
 
       <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base">
         <p>
-          EasyTools By Nasir was created by Nasir to provide free, fast and safe online tools for everyone. We offer 20 free tools including Image Compressor, BG Remover, PDF Merger, Video Compressor, Password Generator, QR Generator, and more.
+          EasyTools By Nasir was created by Nasir to provide free, fast and safe online tools for everyone. We offer 18 free tools including Image Compressor, BG Remover, PDF Merger, Video Compressor, Password Generator, QR Generator, and more.
         </p>
         <p>
           Our mission is simple: No signup, no watermark, no hidden charges. All tools work 100% in your browser, so your files stay private and safe. We are from Karachi, Pakistan and we are continuously adding new tools to help students, creators and business owners.
@@ -78,7 +78,7 @@ const AboutPageContent: React.FC = () => {
           href="/"
           className="inline-flex min-h-[42px] items-center justify-center rounded-lg bg-blue-600 px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-blue-500 whitespace-nowrap"
         >
-          Explore All 20 Tools
+          Explore All 18 Tools
         </a>
       </div>
     </article>
@@ -311,7 +311,7 @@ const TermsPageContent: React.FC = () => {
             1. Tools Provided Free &ldquo;As Is&rdquo;
           </h2>
           <p>
-            Tools are provided free &ldquo;as is&rdquo; without warranties or guarantees of any kind, whether express or implied. While we strive for fast and accurate processing across all 20 browser tools, we do not guarantee uninterrupted availability or error-free output in every browser or device configuration.
+            Tools are provided free &ldquo;as is&rdquo; without warranties or guarantees of any kind, whether express or implied. While we strive for fast and accurate processing across all 18 browser tools, we do not guarantee uninterrupted availability or error-free output in every browser or device configuration.
           </p>
         </section>
 
@@ -385,7 +385,7 @@ export const StaticPageShell: React.FC<StaticPageShellProps> = ({ page }) => {
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to All 20 Tools</span>
+            <span>Back to All 18 Tools</span>
           </a>
         </div>
 

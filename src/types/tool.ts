@@ -15,7 +15,6 @@ export type ToolId =
   | 'unit-converter'
   | 'text-to-speech'
   | 'video-to-mp3'
-  | 'watermark-remover'
   | 'pdf-merge'
   | 'video-compressor'
   | 'image-to-text'

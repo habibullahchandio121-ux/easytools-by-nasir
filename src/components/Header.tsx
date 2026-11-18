@@ -26,7 +26,10 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (onGoHome && window.location.pathname === '/') {
+    if (
+      onGoHome &&
+      (window.location.pathname === '/' || window.location.pathname === '/index.html')
+    ) {
       e.preventDefault();
       onGoHome();
       setMobileMenuOpen(false);

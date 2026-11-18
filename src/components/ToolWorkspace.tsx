@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { TOOLS } from '../data/tools';
+import { TOOL_GUIDES } from '../data/toolGuides';
 import type { ToolId, ToolItem } from '../types/tool';
 import { BgRemoverTool } from './tools/BgRemoverTool';
 import { ImageCompressorTool } from './tools/ImageCompressorTool';
@@ -16,7 +17,6 @@ import { ColorPickerTool } from './tools/ColorPickerTool';
 import { UnitConverterTool } from './tools/UnitConverterTool';
 import { TextToSpeechTool } from './tools/TextToSpeechTool';
 import { VideoToMp3Tool } from './tools/VideoToMp3Tool';
-import { WatermarkRemoverTool } from './tools/WatermarkRemoverTool';
 import { PdfMergeTool } from './tools/PdfMergeTool';
 import { VideoCompressorTool } from './tools/VideoCompressorTool';
 import { ImageToTextTool } from './tools/ImageToTextTool';
@@ -34,6 +34,7 @@ export const ToolWorkspace: React.FC<ToolWorkspaceProps> = ({
   onSelectTool,
 }) => {
   const Icon = tool.icon;
+  const guide = TOOL_GUIDES[tool.id];
 
   const renderTool = () => {
     switch (tool.id) {
@@ -65,8 +66,6 @@ export const ToolWorkspace: React.FC<ToolWorkspaceProps> = ({
         return <TextToSpeechTool />;
       case 'video-to-mp3':
         return <VideoToMp3Tool />;
-      case 'watermark-remover':
-        return <WatermarkRemoverTool />;
       case 'pdf-merge':
         return <PdfMergeTool />;
       case 'video-compressor':
@@ -137,6 +136,40 @@ export const ToolWorkspace: React.FC<ToolWorkspaceProps> = ({
 
         {renderTool()}
       </div>
+
+      {guide && (
+        <article
+          aria-label={`How to use ${tool.name} and key benefits`}
+          className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900 sm:p-7"
+        >
+          <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+            <div>
+              <h2 className="font-display text-lg font-bold text-slate-900 dark:text-white">
+                How to Use {tool.name}
+              </h2>
+              <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {guide.howToUse.map((step, index) => (
+                  <li key={index} className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-bold text-blue-600 dark:bg-blue-950/80 dark:text-blue-400">
+                      {index + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="border-t border-slate-100 pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-8 dark:border-slate-800">
+              <h2 className="font-display text-lg font-bold text-slate-900 dark:text-white">
+                Key Benefits
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {guide.keyBenefits}
+              </p>
+            </div>
+          </div>
+        </article>
+      )}
     </section>
   );
 };
